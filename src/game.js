@@ -38,6 +38,8 @@ class Game {
         window.addEventListener('resize', () => this.onWindowResize(), false);
         
         // Start Loop
+        this.camera.position.set(0, 10, 20);  
+        this.camera.lookAt(0, 0, 0);
         this.animate();
     }
 
