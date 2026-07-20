@@ -1,4 +1,4 @@
-import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+import * as THREE from 'https://unpkg.com/three@0.165.0/build/three.module.js';
 import { World } from './world.js';
 import { Player } from './player.js';
 import { Monsters } from './monsters.js';
