@@ -1,3 +1,5 @@
+import * as THREE from 'https://unpkg.com/three@0.165.0/build/three.module.js';
+
 export class Combat {
     constructor(player, monsters) {
         this.player = player;
@@ -80,4 +82,4 @@ export class Combat {
             }
         });
     }
-}
+            }
