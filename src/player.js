@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from 'https://unpkg.com/three@0.165.0/build/three.module.js';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
 export class Player {
@@ -123,4 +123,4 @@ export class Player {
         this.hp = this.maxHp;
         console.log("Level Up! Now level " + this.level);
     }
-        }
+    }
