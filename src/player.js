@@ -1,5 +1,5 @@
 import * as THREE from 'https://unpkg.com/three@0.165.0/build/three.module.js';
-import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { PointerLockControls } from 'https://unpkg.com/three@0.165.0/examples/jsm/controls/PointerLockControls.js';
 
 export class Player {
     constructor(scene, camera) {
