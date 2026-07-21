@@ -574,7 +574,7 @@ export function updateMovement(dt){
   rAmt += touchMove.x;
   const rawMag = Math.hypot(fAmt, rAmt);
   if(rawMag > 1){ fAmt /= rawMag; rAmt /= rawMag; }
-  const move = new THREE.Vector3().addScaledVector(forward, fAmt).addScaledVector(right, rAmt);
+  const move = new THREE.Vector3().addScaledVector(forward, fAmt).addScaledVector(left, lAmt);
   if(move.lengthSq()>0){
     move.multiplyScalar(speed*dt);
     player.pos.add(move);
