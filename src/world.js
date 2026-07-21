@@ -268,7 +268,7 @@ export function initTouchControls(){
       knob.style.left = (32+dx)+'px';
       knob.style.top = (32+dy)+'px';
       touchMove.x = -dx/JOY_R;      // strafe
-      touchMove.y = dy/JOY_R;     // forward (screen-up = forward)
+      touchMove.y = -dy/JOY_R;     // forward (screen-up = forward)
     }
     e.preventDefault();
   }, {passive:false});
