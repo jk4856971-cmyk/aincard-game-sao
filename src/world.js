@@ -203,19 +203,23 @@ export function init3D(){
   // Visible player body (third-person). Lives directly on the scene (not worldGroup)
   // so it survives buildTown()/buildField() calls, which clear worldGroup on every transition.
   playerMesh = new THREE.Group();
-  const bodyMat = new THREE.MeshStandardMaterial({color:0x4fd8ff, emissive:0x1a6a8a, emissiveIntensity:0.4, roughness:0.5});
-  const body = makeCapsuleMesh(0.42, 1.05, bodyMat);
-  body.position.y = 1.0;
+  const bodyMat = new THREE.MeshStandardMaterial({color:0x4fd8ff, emissive:0x4fd8ff, emissiveIntensity:0.7, roughness:0.4});
+  const body = makeCapsuleMesh(0.45, 1.15, bodyMat);
+  body.position.y = 1.05;
   playerMesh.add(body);
   const headMat = new THREE.MeshStandardMaterial({color:0xd8b98a, roughness:0.8});
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.26,10,10), headMat);
-  head.position.y = 1.85;
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.28,12,12), headMat);
+  head.position.y = 1.95;
   playerMesh.add(head);
   // small forward-facing indicator (a "sword" hint) so facing direction reads clearly in third-person
-  const swordMat = new THREE.MeshStandardMaterial({color:0xcfd8dc, metalness:0.7, roughness:0.3, emissive:0x8fd8ff, emissiveIntensity:0.3});
-  const sword = new THREE.Mesh(new THREE.BoxGeometry(0.08,0.08,0.9), swordMat);
-  sword.position.set(0.35, 1.0, 0.35);
+  const swordMat = new THREE.MeshStandardMaterial({color:0xeaf6ff, metalness:0.7, roughness:0.25, emissive:0x8fd8ff, emissiveIntensity:0.6});
+  const sword = new THREE.Mesh(new THREE.BoxGeometry(0.09,0.09,1.0), swordMat);
+  sword.position.set(0, 1.05, 0.55);
   playerMesh.add(sword);
+  // self-illuminating light so the character always reads clearly, regardless of floor/fog lighting
+  const playerLight = new THREE.PointLight(0x8fd8ff, 0.9, 8);
+  playerLight.position.y = 1.5;
+  playerMesh.add(playerLight);
   scene.add(playerMesh);
 
   window.addEventListener('resize', ()=>{
@@ -583,7 +587,8 @@ export function tryInteract(){
 export function updateMovement(dt){
   const speed = 6.5;
   const forward = new THREE.Vector3(Math.sin(camState.yaw), 0, Math.cos(camState.yaw));
-  const right = new THREE.Vector3(Math.sin(camState.yaw-Math.PI/2), 0, Math.cos(camState.yaw-Math.PI/2));
+  const up = new THREE.Vector3(0,1,0);
+  const right = new THREE.Vector3().crossVectors(forward, up).normalize();
   let fAmt = 0, rAmt = 0;
   if(keys['KeyW']) fAmt += 1;
   if(keys['KeyS']) fAmt -= 1;
@@ -615,10 +620,10 @@ export function updateMovement(dt){
   }
 
   // Third-person camera: orbit behind+above the player, looking at them.
-  const camDist = 5.5, camHeightOffset = 1.3;
+  const camDist = 4.6, camHeightOffset = 1.6;
   camera.position.copy(player.pos).addScaledVector(dir, -camDist);
   camera.position.y += camHeightOffset;
-  camera.lookAt(player.pos);
+  camera.lookAt(player.pos.clone().setY(player.pos.y - 0.2));
 }
 
 export function updateProps(t){
