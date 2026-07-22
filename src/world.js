@@ -302,7 +302,7 @@ export function initTouchControls(){
       joyId = null;
       base.style.display = 'none';
       knob.style.left='32px'; knob.style.top='32px';
-      touchMove.x = 0; touchMove.y = 0;
+      touchMove.y = 0; touchMove.x = 0;
     }
   }
   zone.addEventListener('touchend', endJoy);
@@ -324,7 +324,7 @@ export function initTouchControls(){
       if(t.identifier !== lookId) continue;
       const dx = t.clientX - lastX, dy = t.clientY - lastY;
       lastX = t.clientX; lastY = t.clientY;
-      camState.yaw += dx * 0.0045;
+      camState.yaw -= dx * 0.0045;
       camState.pitch -= dy * 0.0045;
       camState.pitch = Math.max(-1.2, Math.min(1.2, camState.pitch));
     }
