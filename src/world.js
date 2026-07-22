@@ -588,7 +588,7 @@ export function updateMovement(dt){
   const speed = 6.5;
   const forward = new THREE.Vector3(Math.sin(camState.yaw), 0, Math.cos(camState.yaw));
   const up = new THREE.Vector3(0,1,0);
-  const right = new THREE.Vector3().crossVectors(forward, up).normalize();
+  const right = new THREE.Vector3().crossVectors(up, forward).normalize();
   let fAmt = 0, rAmt = 0;
   if(keys['KeyW']) fAmt += 1;
   if(keys['KeyS']) fAmt -= 1;
