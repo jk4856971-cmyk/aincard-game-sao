@@ -1,0 +1,15 @@
+{
+  "name": "The Rise of Iljanor",
+  "short_name": "Iljanor",
+  "description": "100-floor open-world RPG inspired by Sword Art Online",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#05090d",
+  "theme_color": "#05090d",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
