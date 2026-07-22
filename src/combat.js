@@ -57,7 +57,7 @@ export function playBossRoarSfx(){ playTone(80, 0.6, 'sawtooth', 0.18, 40); }
 
 export function spawnSlashEffect(){
   const dir = new THREE.Vector3(Math.sin(camState.yaw), 0, Math.cos(camState.yaw));
-  const right = new THREE.Vector3(Math.sin(camState.yaw-Math.PI/2), 0, Math.cos(camState.yaw-Math.PI/2));
+  const right = new THREE.Vector3().crossVectors(dir, new THREE.Vector3(0,1,0)).normalize();
   const geo = new THREE.RingGeometry(0.9, 1.15, 16, 1, 0, Math.PI*0.75);
   const mat = new THREE.MeshBasicMaterial({color:0x9fe8ff, transparent:true, opacity:0.9, side:THREE.DoubleSide});
   const slash = new THREE.Mesh(geo, mat);
