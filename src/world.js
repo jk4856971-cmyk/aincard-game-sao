@@ -290,8 +290,8 @@ export function initTouchControls(){
       if(d > JOY_R){ dx = dx/d*JOY_R; dy = dy/d*JOY_R; }
       knob.style.left = (32+dx)+'px';
       knob.style.top = (32+dy)+'px';
-      touchMove.x = dx/JOY_R;      // strafe
-      touchMove.y = -dy/JOY_R;     // forward (screen-up = forward)
+      touchMove.x = -dx/JOY_R;      // strafe
+      touchMove.y = +dy/JOY_R;     // forward (screen-up = forward)
     }
     e.preventDefault();
   }, {passive:false});
@@ -302,7 +302,7 @@ export function initTouchControls(){
       joyId = null;
       base.style.display = 'none';
       knob.style.left='32px'; knob.style.top='32px';
-      touchMove.y = 0; touchMove.x = 0;
+      touchMove.x = 0; touchMove.y = 0;
     }
   }
   zone.addEventListener('touchend', endJoy);
